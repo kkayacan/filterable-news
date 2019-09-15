@@ -34,9 +34,61 @@ class Report_model extends CI_Model
             $this->db->where('itemId', $item->id);
             $item->links = $this->db->get('links')->result();
             $item->sourceCount = count($item->links);
+            $header = $this->_get_header($item->links);
+            $item->title = $header['title'];
+            $item->excerpt = $header['excerpt'];
             array_push($result, $item);
         }
         return $result;
+    }
+
+    public function _get_header($links)
+    {
+        $tmp_links = $links;
+        if (count($tmp_links) > 1) {
+            usort($tmp_links, array($this, '_cmp_excerpt_desc'));
+        }
+        $header = array(
+            'title' => '',
+            'excerpt' => $tmp_links[0]->excerpt,
+        );
+        if (count($tmp_links) > 1) {
+            usort($tmp_links, array($this, '_cmp_title_desc'));
+        }
+        if (strlen($header['excerpt']) > 0){
+            $header['title'] = $tmp_links[0]->title;
+        } else {
+            if(count($tmp_links) > 1) {
+                $header['excerpt'] = $tmp_links[0]->title;
+                $header['title'] = $tmp_links[1]->title;
+            } else {
+                $header['excerpt'] = '';
+                $header['title'] = $tmp_links[0]->title;
+            }
+        }
+        return $header;
+    }
+
+    public function _cmp_title_desc($a, $b)
+    {
+        if (strlen($a->title) === strlen($b->title)) {
+            return 0;
+        } elseif (strlen($b->title) > strlen($a->title)) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    public function _cmp_excerpt_desc($a, $b)
+    {
+        if (strlen($a->excerpt) === strlen($b->excerpt)) {
+            return 0;
+        } elseif (strlen($b->excerpt) > strlen($a->excerpt)) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
 }

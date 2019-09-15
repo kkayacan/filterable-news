@@ -1,0 +1,68 @@
+<mvc:View 
+    controllerName="fn.controller.NewsList"
+    xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+    <List headerText="" 
+          width="auto" 
+          items="{path: 'news>/',    
+                  sorter: [{path: 'sourceCount', 
+                            descending: true}, 
+                           {path: 'pubDate', 
+                            descending: true}]}">
+        <items>
+            <CustomListItem class="sapUiResponsiveMargin newsItem">
+                <VBox>
+                    <HBox>
+                        <Image src="{ parts: ['news>media','news>categories/0/text'],
+						              formatter: '.formatter.getImage' }"
+                                class="sapUiTinyMargin featuredImage"/>
+                        <VBox>
+                            <Title level="H1" text="{news>title}" wrapping="true" class="sapUiTinyMargin"/>
+                            <Text text="{news>excerpt}" class="sapUiTinyMargin"/>
+                            <Text text="{news>pubDate}" class="sapUiTinyMargin"/>
+                            <List headerText="" 
+                                  width="auto" 
+                                  items="{news>categories}"
+                                  class="sapUiTinyMargin">
+                                <items>
+                                    <CustomListItem class="categoryListItem">
+                                        <Text text="{ path: 'news>text',
+						                              formatter: '.formatter.getCategory' }"/>
+                                    </CustomListItem>
+                                </items>
+                            </List>
+                    </VBox>
+                    </HBox>
+	                    <Panel expandable="true" width="auto" class="linksPanel">
+                            <headerToolbar>
+                                <Toolbar fieldGroupIds="panelHeader">
+                                    <content>
+                                        <Text text='{i18n>linksPanel}' />
+                                    </content>
+                                </Toolbar>
+                            </headerToolbar>
+		                    <content>
+                                <Table headerText="" 
+                                      width="auto" 
+                                      items="{news>links}">
+		                            <columns>
+			                            <Column width="25%"/>
+			                            <Column width="75%"/>
+		                            </columns>
+                                    <items>
+			                            <ColumnListItem>
+				                            <cells>
+                                                <Link text="{news>sourceAlias}" 
+                                                      target="_blank" 
+                                                      href="{news>url}" />
+                                                <Text text="{news>title}"/>
+				                            </cells>
+			                            </ColumnListItem>
+                                    </items>
+                                </Table>
+		                    </content>
+	                    </Panel>
+                </VBox>
+            </CustomListItem>
+        </items>
+    </List>
+</mvc:View>

@@ -1,0 +1,6 @@
+.newsItem {border-style: groove;
+           border-radius: 25px;}
+
+.sapMPanelWrappingDivTb, .categoryListItem {border: none;}
+
+.featuredImage {border-radius: 10px;}
