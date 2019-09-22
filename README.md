@@ -1,5 +1,5 @@
 # filterable-news
-filterable-news is a mysql/php/javascript powered news collector and presenter. Feel free to report bugs, suggest features and contribute.
+filterable-news is a mysql/php/javascript powered news collector and presenter. Feel free to report bugs, suggest features and contribute. A live version with Turkish news can be found at [haber.keremkayacan.com](https://haber.keremkayacan.com)
 
 ## Features
 - Backend developed with [CodeIgniter](https://codeigniter.com/)
