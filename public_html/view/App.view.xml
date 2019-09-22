@@ -6,9 +6,13 @@
 	<Shell>
 		<App>
 			<pages>
-				<Page title="{i18n>homePageTitle}">
+				<Page id="homePage" title="{i18n>homePageTitle}">
+					<headerContent>
+						<Button icon="sap-icon://back-to-top" tooltip="{i18n>scrollToTop}" press="onScrollToTop" />
+					</headerContent>
 					<content>
-						<mvc:XMLView viewName="fn.view.NewsList"/>
+						<mvc:XMLView id="filtersView" viewName="fn.view.Filters"/>
+						<mvc:XMLView id="newsListView" viewName="fn.view.NewsList"/>
 					</content>
 				</Page>
 			</pages>

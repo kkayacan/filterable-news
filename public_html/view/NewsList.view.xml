@@ -1,8 +1,12 @@
 <mvc:View 
     controllerName="fn.controller.NewsList"
     xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
-    <List headerText="" 
+    <List id="newsList"
+          headerText="" 
           width="auto" 
+		  growing="true"
+		  growingThreshold="10"
+		  growingScrollToLoad="true"
           items="{path: 'news>/',    
                   sorter: [{path: 'sourceCount', 
                             descending: true}, 
@@ -18,7 +22,17 @@
                         <VBox>
                             <Title level="H1" text="{news>title}" wrapping="true" class="sapUiTinyMargin"/>
                             <Text text="{news>excerpt}" class="sapUiTinyMargin"/>
-                            <Text text="{news>pubDate}" class="sapUiTinyMargin"/>
+                            <Text text="{path:'news>pubDate', 
+                                         type:'sap.ui.model.type.Date', 
+                                         formatOptions: {source : {pattern: 'yyyy-MM-dd HH:mm:ss z'},
+                                                         pattern: 'd MMM yyyy EEE',
+                                                         relative: true,
+                                                         relativeScale: 'hour'} }" 
+                                   tooltip="{path:'news>pubDate', 
+                                         type:'sap.ui.model.type.Date', 
+                                         formatOptions: {source : {pattern: 'yyyy-MM-dd HH:mm:ss z'},
+                                                         pattern: 'd MMM yyyy EEE HH:mm'} }" 
+                                    class="sapUiTinyMargin"/>
                             <List headerText="" 
                                   width="auto" 
                                   items="{news>categories}"

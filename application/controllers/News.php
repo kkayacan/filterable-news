@@ -20,7 +20,11 @@ class News extends CI_Controller {
 
     public function report_get()
     {
-        $data = $this->report_model->get($this->get('hours'));
+        if ($this->get('hours')) {
+            $data = $this->report_model->get($this->get('hours'));
+        } else {
+            $data = $this->report_model->get('3');
+        }
         $this->response($data);
     }
 

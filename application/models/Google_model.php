@@ -15,7 +15,7 @@ class Google_model extends CI_Model
 
     public function fetch()
     {
-        $current_time = date('Y-m-d H:i:s');
+        $current_time = date('Y-m-d H:i:s z');
 
         $this->db->select('id, text');
         $categories = $this->db->get('categories')->result();
@@ -45,7 +45,7 @@ class Google_model extends CI_Model
         foreach ($items as $item) {
 
             $pub_date_object = DateTime::createFromFormat(DateTimeInterface::RSS, (string) $item->pubDate);
-            $pub_date = $pub_date_object->format('Y-m-d H:i:s');
+            $pub_date = $pub_date_object->format('Y-m-d H:i:s z');
 
             if ($item->children('media', true)) {
                 $media = $item->children('media', true)->content->attributes();

@@ -37,10 +37,6 @@
           "settings": {
             "bundleName": "fn.i18n.i18n"
           }
-        },
-        "news": {
-          "type": "sap.ui.model.json.JSONModel",
-          "uri": "/api/news/report/hours/3"
         }
       },
       "resources": {

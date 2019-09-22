@@ -1,0 +1,27 @@
+<View controllerName="fn.controller.Filters" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Panel expandable="true" width="auto" class="filtersPanel">
+		<headerToolbar>
+			<Toolbar fieldGroupIds="panelHeader">
+				<content>
+					<Text text="{i18n>filtersPanel}" />
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<content>
+            <HBox>
+				<Button text="{i18n>threeHours}"
+						press="onHourFilterPress('3')"
+                        class="sapUiTinyMargin"/>
+				<Button text="{i18n>sixHours}"
+						press="onHourFilterPress('6')"
+                        class="sapUiTinyMargin"/>
+				<Button text="{i18n>twelveHours}"
+						press="onHourFilterPress('12')"
+                        class="sapUiTinyMargin"/>
+				<Button text="{i18n>twentyfourHours}"
+						press="onHourFilterPress('24')"
+                        class="sapUiTinyMargin"/>
+            </HBox>
+		</content>
+	</Panel>
+</View>

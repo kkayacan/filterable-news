@@ -37,6 +37,7 @@ class Report_model extends CI_Model
             $header = $this->_get_header($item->links);
             $item->title = $header['title'];
             $item->excerpt = $header['excerpt'];
+            $item->pubDate = $item->pubDate . ' GMT';
             array_push($result, $item);
         }
         return $result;
