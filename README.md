@@ -8,6 +8,7 @@ filterable-news is a mysql/php/javascript powered news collector and presenter. 
 - News links parsed with [Simple HTML Dom Parser](https://simplehtmldom.sourceforge.io/)
 - Backend can be called as a separate json rest api
 - News can be filtered by time frame
+- Filters are bookmarkable
 - Sorts news by source count
 
 ## Requirements
