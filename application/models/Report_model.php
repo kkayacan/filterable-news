@@ -20,9 +20,14 @@ class Report_model extends CI_Model
         $date_time->modify('-' . $hours . ' hours');
         $start_time = $date_time->format('Y-m-d H:i:s');
 
-        $this->db->select('id, pubDate, media');
-        $this->db->where('pubDate >=', $start_time);
-        $items = $this->db->get('items');
+        $this->db->select('items.id, items.pubDate, items.media, COUNT(links.id) as linkCount');
+        $this->db->from('items');
+        $this->db->join('links', 'links.itemId = items.id');
+        $this->db->where('items.pubDate >=', $start_time);
+        $this->db->group_by('items.id'); 
+        $this->db->order_by('linkCount', 'desc');
+        $this->db->limit(25);
+        $items = $this->db->get();
 
         foreach ($items->result() as $item) {
             $this->db->select('categories.text');
