@@ -26,7 +26,7 @@ class Report_model extends CI_Model
         $this->db->where('items.pubDate >=', $start_time);
         $this->db->group_by('items.id'); 
         $this->db->order_by('linkCount', 'desc');
-        $this->db->limit(25);
+        $this->db->limit(50);
         $items = $this->db->get();
 
         foreach ($items->result() as $item) {

@@ -7,11 +7,7 @@
 		  growing="true"
 		  growingThreshold="10"
 		  growingScrollToLoad="true"
-          items="{path: 'news>/',    
-                  sorter: [{path: 'sourceCount', 
-                            descending: true}, 
-                           {path: 'pubDate', 
-                            descending: true}]}">
+          items="{path: 'news>/'}">
         <items>
             <CustomListItem class="sapUiResponsiveMargin newsItem">
                 <VBox>

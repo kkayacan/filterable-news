@@ -8,12 +8,15 @@ class Collector extends CI_Controller
     {
         parent::__construct();
         $this->load->model('google_model');
+        $this->load->model('newsapi_model');
     }
 
     public function fetch()
     {
         if($_SERVER['SERVER_ADDR'] == $this->_get_client_ip_server()) {
-            $this->google_model->fetch();
+            $this->newsapi_model->fetch();
+            $data = $this->google_model->fetch();
+            $this->response($data);
         }
     }
 
