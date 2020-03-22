@@ -33,11 +33,17 @@ class Newsapi_model extends CI_Model
     {
         if ($this->config->item('newsapi')) {
             $link = $this->config->item('n_url_base') . $category_text . $this->config->item('n_url_param') . $this->config->item('newsapi');
-            $result = json_decode(file_get_contents($link));
+            $context = stream_context_create([
+                "http" => [
+                    "ignore_errors" => true,
+                ],
+            ]);
+            $result = json_decode(file_get_contents($link, false, $context));
             if ($result) {
-                return $result->articles;
+                if (property_exists($result, 'articles')) {
+                    return $result->articles;
+                }
             }
-            return false;
         }
         return false;
     }
